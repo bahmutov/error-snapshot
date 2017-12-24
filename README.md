@@ -13,10 +13,27 @@
 Requires [Node](https://nodejs.org/en/) version 6 or above.
 
 ```sh
-npm install --save error-snapshot
+npm install --save-dev error-snapshot
 ```
 
 ## Use
+
+When checking if a function throws an error as expected when called
+
+```js
+const errorSnapshot = require('error-snapshot')
+it('snapshots error', () => {
+  const fn = () => {
+    throw new Error('A test error')
+  }
+  errorSnapshot(fn)
+})
+```
+
+First time the test runs, it will save error message snapshot. If the
+function does NOT throw an error, or if the error has a different message,
+it throws an error. The error message is saved into a snapshot file
+using [snap-shot-it](https://github.com/bahmutov/snap-shot-it)
 
 ### Small print
 
