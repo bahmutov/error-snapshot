@@ -3,15 +3,19 @@
 const snapshot = require('snap-shot-it')
 const la = require('lazy-ass')
 const is = require('check-more-types')
+const R = require('ramda')
 
-const errorSnapshot = fn => {
+const errorSnapshot = (fn, ...props) => {
   la(is.fn(fn), 'expected function to call', fn)
 
+  const pickProps = R.pick(props)
+  const pickMain = R.pick(['name', 'message'])
+
   const validateError = e => {
-    snapshot({
-      constructor: e.constructor.name,
-      message: e.message
-    })
+    const mainProps = pickMain(e)
+    const moreProps = pickProps(e)
+    const all = R.merge(mainProps, moreProps)
+    snapshot(all)
     return true
   }
 

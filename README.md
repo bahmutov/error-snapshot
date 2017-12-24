@@ -35,7 +35,48 @@ function does NOT throw an error, or if the error has a different message,
 it throws an error. The error message is saved into a snapshot file
 using [snap-shot-it](https://github.com/bahmutov/snap-shot-it)
 
-By default, the error message and the constructor name is saved.
+By default, the error message and the constructor name is saved, but
+you can specify additional properties to pick.
+
+## Example
+
+```js
+// basic
+it('snapshots error', () => {
+  const fn = () => {
+    throw new Error('A test error')
+  }
+  errorSnapshot(fn)
+})
+// saved snapshot
+exports['snapshots error 1'] = {
+  "name": "Error",
+  "message": "A test error"
+}
+```
+
+```js
+// extra properties
+it('snapshots extra properties by name', () => {
+  const fn = () => {
+    const e = new Error('A test error')
+    e.foo = 42
+    e.bar = 'some bar prop'
+    throw e
+  }
+  errorSnapshot(fn, 'foo', 'bar')
+})
+// saved snapshot
+exports['snapshots extra properties by name 1'] = {
+  "name": "Error",
+  "message": "A test error",
+  "foo": 42,
+  "bar": "some bar prop"
+}
+```
+
+For more examples, see [test file](src/error-snapshot-spec.js) and
+the [snapshots](__snapshots__/error-snapshot-spec.js)
 
 ### Small print
 
