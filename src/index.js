@@ -6,7 +6,16 @@ const is = require('check-more-types')
 
 const errorSnapshot = fn => {
   la(is.fn(fn), 'expected function to call', fn)
-  la(is.raises(fn, e => snapshot({ message: e.message })))
+
+  const validateError = e => {
+    snapshot({
+      constructor: e.constructor.name,
+      message: e.message
+    })
+    return true
+  }
+
+  la(is.raises(fn, validateError), 'function does not raise expected error')
 }
 
 module.exports = errorSnapshot

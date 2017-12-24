@@ -35,6 +35,8 @@ function does NOT throw an error, or if the error has a different message,
 it throws an error. The error message is saved into a snapshot file
 using [snap-shot-it](https://github.com/bahmutov/snap-shot-it)
 
+By default, the error message and the constructor name is saved.
+
 ### Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2017
