@@ -63,14 +63,6 @@
     "unit": "mocha src/*-spec.js",
     "unused-deps": "dependency-check --unused --no-dev ."
   },
-  "release": {
-    "analyzeCommits": "simple-commit-message",
-    "generateNotes": "github-post-release",
-    "verifyRelease": {
-      "path": "dont-crack",
-      "test-against": []
-    }
-  },
   "devDependencies": {
     "ban-sensitive-files": "1.9.2",
     "dependency-check": "2.9.2",
