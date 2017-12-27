@@ -61,7 +61,8 @@
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "npm run unit",
     "unit": "mocha src/*-spec.js",
-    "unused-deps": "dependency-check --unused --no-dev ."
+    "unused-deps": "dependency-check --unused --no-dev .",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "ban-sensitive-files": "1.9.2",

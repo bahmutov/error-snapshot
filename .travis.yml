@@ -9,7 +9,7 @@ node_js:
 before_script:
   - npm prune
 after_success:
-  - npx semantic-release || true
+  - npm run semantic-release || true
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
