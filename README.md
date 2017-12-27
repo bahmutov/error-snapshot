@@ -16,12 +16,19 @@ Requires [Node](https://nodejs.org/en/) version 6 or above.
 npm install --save-dev error-snapshot
 ```
 
+Bring a snapshot function, for example [snap-shot-it][snap-shot-it]
+
+```sh
+npm install --save-dev snap-shot-it
+```
+
 ## Use
 
 When checking if a function throws an error as expected when called
 
 ```js
-const errorSnapshot = require('error-snapshot')
+const snapshot = require('snap-shot-it')
+const errorSnapshot = require('error-snapshot')(snapshot)
 it('snapshots error', () => {
   const fn = () => {
     throw new Error('A test error')
@@ -33,7 +40,7 @@ it('snapshots error', () => {
 First time the test runs, it will save error message snapshot. If the
 function does NOT throw an error, or if the error has a different message,
 it throws an error. The error message is saved into a snapshot file
-using [snap-shot-it](https://github.com/bahmutov/snap-shot-it)
+using [snap-shot-it][snap-shot-it].
 
 By default, the error message and the constructor name is saved, but
 you can specify additional properties to pick.
@@ -77,6 +84,8 @@ exports['snapshots extra properties by name 1'] = {
 
 For more examples, see [test file](src/error-snapshot-spec.js) and
 the [snapshots](__snapshots__/error-snapshot-spec.js)
+
+[snap-shot-it]: https://github.com/bahmutov/snap-shot-it
 
 ### Small print
 

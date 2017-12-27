@@ -1,10 +1,11 @@
 'use strict'
 
+const snapshot = require('snap-shot-it')
 const la = require('lazy-ass')
 const is = require('check-more-types')
 
 /* eslint-env mocha */
-const errorSnapshot = require('.')
+const errorSnapshot = require('.')(snapshot)
 
 describe('error-snapshot', () => {
   it('is a function', () => {
